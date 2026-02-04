@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { useCart } from '../contexts/CartContext';
 
 const HeaderContainer = styled.header`
-  background: #fff;
-  border-bottom: 1px solid #e5e5e5;
+  background: #000;
+  border-bottom: 1px solid #333;
   padding: 20px 0;
   position: sticky;
   top: 0;
@@ -27,7 +27,7 @@ const Logo = styled(Link)`
   letter-spacing: 3px;
   text-transform: uppercase;
   text-decoration: none;
-  color: #000;
+  color: #fff;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -46,14 +46,14 @@ const Nav = styled.nav`
 
 const NavLink = styled(Link)`
   text-decoration: none;
-  color: #000;
+  color: #fff;
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: color 0.3s ease;
   
   &:hover {
-    color: #666;
+    color: #ccc;
   }
 `;
 
@@ -65,8 +65,8 @@ const CartCount = styled.span`
   position: absolute;
   top: -8px;
   right: -12px;
-  background: #000;
-  color: white;
+  background: #fff;
+  color: #000;
   font-size: 10px;
   padding: 2px 6px;
   border-radius: 10px;

@@ -19,6 +19,16 @@ const Card = styled.div`
   }
 `;
 
+const ProductImage = styled.img<{ isSplit?: boolean }>`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+  ${props => props.isSplit && `
+    display: none;
+  `}
+`;
+
 const ImageContainer = styled.div<{ isSplit?: boolean }>`
   position: relative;
   width: 100%;
@@ -37,7 +47,7 @@ const ImageContainer = styled.div<{ isSplit?: boolean }>`
       left: 0;
       width: 50%;
       height: 100%;
-      background: url('/brand/2a.JPEG') center/cover;
+      background: url('/brand/2.JPEG') center/cover;
       clip-path: polygon(0 0, 100% 0, 0 100%);
     }
     
@@ -48,7 +58,8 @@ const ImageContainer = styled.div<{ isSplit?: boolean }>`
       right: 0;
       width: 50%;
       height: 100%;
-      background: url('/brand/2b.JPEG') center/cover;
+      background: url('/brand/2.JPEG') center/cover;
+      filter: hue-rotate(320deg) brightness(1.2);
       clip-path: polygon(100% 0, 100% 100%, 0 100%);
     }
   `}
@@ -171,8 +182,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }
   return (
     <Card>
       <ImageContainer isSplit={isSplit}>
+        {!isSplit && <ProductImage src={product.image} alt={product.name} />}
         <PlaceholderImage isSplit={isSplit}>
-          {!isSplit && `${product.name} IMAGE PLACEHOLDER`}
+          {isSplit && ''}
         </PlaceholderImage>
         <HoverOverlay>
           <StoryText>{product.hoverStory}</StoryText>

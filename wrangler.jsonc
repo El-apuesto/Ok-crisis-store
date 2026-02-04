@@ -1,0 +1,7 @@
+{
+  "name": "ok-crisis-store",
+  "compatibility_date": "2026-02-04",
+  "assets": {
+    "directory": "./build"
+  }
+}

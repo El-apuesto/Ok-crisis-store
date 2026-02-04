@@ -43,6 +43,22 @@ const ProductImage = styled.img`
   }
 `;
 
+const ImagePlaceholder = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  color: #999;
+  font-size: 14px;
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 2px;
+`;
+
 const HoverOverlay = styled.div<{ $isVisible: boolean }>`
   position: absolute;
   top: 0;
@@ -59,6 +75,7 @@ const HoverOverlay = styled.div<{ $isVisible: boolean }>`
   justify-content: center;
   text-align: center;
   backdrop-filter: blur(10px);
+  z-index: 10;
 `;
 
 const StoryText = styled.p`
@@ -146,6 +163,7 @@ const AddToCartButton = styled.button`
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
   const [showStory, setShowStory] = useState(false);
+  const [imageError, setImageError] = useState(false);
   
   return (
     <Card 
@@ -153,7 +171,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }
       onMouseLeave={() => setShowStory(false)}
     >
       <ImageContainer>
-        <ProductImage src={product.image} alt={product.name} />
+        {!imageError ? (
+          <ProductImage 
+            src={product.image} 
+            alt={product.name}
+            onError={() => {
+              console.log('Image failed to load:', product.image);
+              setImageError(true);
+            }}
+          />
+        ) : (
+          <ImagePlaceholder>
+            {product.name}
+          </ImagePlaceholder>
+        )}
         <HoverOverlay $isVisible={showStory}>
           <StoryText>{product.hoverStory}</StoryText>
         </HoverOverlay>

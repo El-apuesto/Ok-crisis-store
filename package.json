@@ -2,7 +2,7 @@
   "name": "ok-crisis-store",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://el-apuesto.github.io/ok-crisis-store",
+  "homepage": ".",
   "dependencies": {
     "@stripe/stripe-js": "^8.7.0",
     "@testing-library/dom": "^10.4.1",

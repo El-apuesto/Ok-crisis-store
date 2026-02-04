@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@200;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 
 * {
   box-sizing: border-box;
@@ -6,16 +6,15 @@
 
 body {
   margin: 0;
-  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Cormorant Garamond', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #fafafa;
-  color: #1a1a1a;
-  font-weight: 300;
+  background: #0a0a0a;
+  color: #ffffff;
 }
 
-#root {
-  min-height: 100vh;
+* {
+  box-sizing: border-box;
 }
 
 code {

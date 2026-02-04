@@ -7,13 +7,14 @@ import { products } from '../data/products';
 
 const PageContainer = styled.div`
   min-height: 100vh;
-  background: #fafafa;
+  background: #0a0a0a;
+  color: #fff;
 `;
 
 const HeroSection = styled.section`
-  padding: 80px 40px 100px 40px;
+  padding: 120px 40px 140px 40px;
   text-align: center;
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #0d0d0d 100%);
   color: #fff;
   position: relative;
   overflow: hidden;
@@ -23,92 +24,110 @@ const HeroSection = styled.section`
     position: absolute;
     top: -50%;
     right: -10%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -5%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
     border-radius: 50%;
   }
 `;
 
 const HeroTitle = styled.h1`
-  font-size: 72px;
-  font-weight: 300;
-  letter-spacing: 12px;
+  font-size: 96px;
+  font-weight: 200;
+  letter-spacing: 16px;
   text-transform: uppercase;
-  margin: 0 0 25px 0;
+  margin: 0 0 30px 0;
   font-family: 'Cormorant Garamond', serif;
   position: relative;
   z-index: 1;
+  color: #ffffff;
   
   @media (max-width: 768px) {
-    font-size: 42px;
-    letter-spacing: 8px;
+    font-size: 52px;
+    letter-spacing: 10px;
   }
 `;
 
 const HeroSubtitle = styled.p`
-  font-size: 16px;
+  font-size: 18px;
   color: #d4af37;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  max-width: 700px;
-  margin: 0 auto 15px auto;
-  font-weight: 300;
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  font-weight: 200;
   position: relative;
   z-index: 1;
 `;
 
 const HeroDescription = styled.p`
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.8);
-  letter-spacing: 1px;
-  max-width: 600px;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 1.5px;
+  max-width: 700px;
   margin: 0 auto;
-  line-height: 1.8;
-  font-weight: 300;
+  line-height: 1.9;
+  font-weight: 200;
   position: relative;
   z-index: 1;
 `;
 
 const ProductsSection = styled.section`
-  padding: 100px 40px 120px 40px;
-  max-width: 1600px;
+  padding: 140px 40px 160px 40px;
+  max-width: 1800px;
   margin: 0 auto;
+  background: #0a0a0a;
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 48px;
-  font-weight: 300;
-  letter-spacing: 8px;
+  font-size: 64px;
+  font-weight: 200;
+  letter-spacing: 12px;
   text-transform: uppercase;
   text-align: center;
-  margin: 0 0 20px 0;
-  color: #1a1a1a;
+  margin: 0 0 30px 0;
+  color: #ffffff;
   font-family: 'Cormorant Garamond', serif;
 `;
 
 const SectionSubtitle = styled.p`
   text-align: center;
   font-size: 14px;
-  color: #666;
-  letter-spacing: 2px;
-  margin: 0 0 80px 0;
+  color: #d4af37;
+  letter-spacing: 3px;
+  margin: 0 0 100px 0;
   text-transform: uppercase;
+  font-weight: 200;
 `;
 
 const ProductsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 60px;
+  gap: 80px;
+  
+  @media (max-width: 1400px) {
+    gap: 60px;
+  }
   
   @media (max-width: 1200px) {
     grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
+    gap: 50px;
   }
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 50px;
+    gap: 60px;
   }
 `;
 

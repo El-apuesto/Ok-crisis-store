@@ -4,13 +4,13 @@ import styled from 'styled-components';
 import { useCart } from '../contexts/CartContext';
 
 const HeaderContainer = styled.header`
-  background: #000;
-  border-bottom: 1px solid #2a2a2a;
-  padding: 25px 0;
+  background: rgba(0, 0, 0, 0.95);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  padding: 30px 0;
   position: sticky;
   top: 0;
   z-index: 100;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
 `;
 
 const HeaderContent = styled.div`
@@ -24,19 +24,19 @@ const HeaderContent = styled.div`
 
 const Logo = styled(Link)`
   font-family: 'Cormorant Garamond', serif;
-  font-size: 28px;
-  font-weight: 400;
-  letter-spacing: 6px;
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: 8px;
   text-transform: uppercase;
   text-decoration: none;
   color: #fff;
   display: flex;
   align-items: center;
-  gap: 15px;
-  transition: opacity 0.3s ease;
+  gap: 20px;
+  transition: all 0.3s ease;
   
   &:hover {
-    opacity: 0.8;
+    color: #d4af37;
   }
 `;
 
@@ -59,19 +59,23 @@ const NavLink = styled(Link)`
   font-size: 13px;
   font-weight: 300;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   transition: all 0.3s ease;
   position: relative;
   
   &::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: -8px;
     left: 0;
     width: 0;
     height: 1px;
     background: #d4af37;
     transition: width 0.3s ease;
+  }
+  
+  &:hover {
+    color: #d4af37;
   }
   
   &:hover::after {

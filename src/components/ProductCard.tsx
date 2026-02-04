@@ -9,15 +9,16 @@ interface ProductCardProps {
 
 const Card = styled.div`
   position: relative;
-  background: #fff;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #111111;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.1);
   
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    transform: translateY(-12px);
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(212, 175, 55, 0.1);
   }
 `;
 
@@ -26,7 +27,7 @@ const ImageContainer = styled.div`
   width: 100%;
   padding-top: 133.33%; /* 3:4 aspect ratio */
   overflow: hidden;
-  background: #f8f8f8;
+  background: #0a0a0a;
 `;
 
 const ProductImage = styled.img`
@@ -89,32 +90,33 @@ const StoryText = styled.p`
 `;
 
 const ProductInfo = styled.div`
-  padding: 35px 30px;
-  background: #fff;
+  padding: 40px 35px;
+  background: #111111;
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
 `;
 
 const ProductName = styled.h3`
-  font-size: 22px;
-  font-weight: 400;
-  margin: 0 0 12px 0;
-  letter-spacing: 3px;
+  font-size: 24px;
+  font-weight: 300;
+  margin: 0 0 15px 0;
+  letter-spacing: 4px;
   text-transform: uppercase;
   font-family: 'Cormorant Garamond', serif;
-  color: #1a1a1a;
+  color: #ffffff;
 `;
 
 const PriceContainer = styled.div`
   display: flex;
   align-items: baseline;
-  gap: 12px;
+  gap: 15px;
   margin-bottom: 25px;
   flex-wrap: wrap;
 `;
 
 const OriginalPrice = styled.span`
   text-decoration: line-through;
-  color: #999;
-  font-size: 15px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 14px;
   font-weight: 300;
   letter-spacing: 1px;
 `;
@@ -128,10 +130,10 @@ const SalePrice = styled.span`
 `;
 
 const SaleLabel = styled.span`
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 300;
   color: #d4af37;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   border: 1px solid #d4af37;
   padding: 4px 10px;
@@ -140,20 +142,23 @@ const SaleLabel = styled.span`
 
 const AddToCartButton = styled.button`
   width: 100%;
-  padding: 18px;
-  background: #1a1a1a;
-  color: white;
-  border: 2px solid #1a1a1a;
+  padding: 22px;
+  background: transparent;
+  color: #d4af37;
+  border: 1px solid #d4af37;
   text-transform: uppercase;
   letter-spacing: 3px;
   font-size: 12px;
   font-weight: 400;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Cormorant Garamond', serif;
   
   &:hover {
-    background: transparent;
-    color: #1a1a1a;
+    background: #d4af37;
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
   }
   
   &:active {

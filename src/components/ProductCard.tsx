@@ -22,16 +22,39 @@ const Card = styled.div`
 const ImageContainer = styled.div<{ isSplit?: boolean }>`
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 500px;
   overflow: hidden;
   background: #f5f5f5;
   
   ${props => props.isSplit && `
-    background: linear-gradient(135deg, #ff69b4 50%, #000000 50%);
+    position: relative;
+    background: #f5f5f5;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      background: url('/brand/2a.JPEG') center/cover;
+      clip-path: polygon(0 0, 100% 0, 0 100%);
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      background: url('/brand/2b.JPEG') center/cover;
+      clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    }
   `}
 `;
 
-const PlaceholderImage = styled.div`
+const PlaceholderImage = styled.div<{ isSplit?: boolean }>`
   width: 100%;
   height: 100%;
   display: flex;
@@ -40,6 +63,30 @@ const PlaceholderImage = styled.div`
   font-size: 14px;
   color: #888;
   background: #f0f0f0;
+  
+  ${props => props.isSplit && `
+    background: transparent;
+    
+    &::before {
+      content: 'BLACK VERSION';
+      position: absolute;
+      top: 25%;
+      left: 25%;
+      font-size: 12px;
+      color: #000;
+      font-weight: bold;
+    }
+    
+    &::after {
+      content: 'PINK VERSION';
+      position: absolute;
+      bottom: 25%;
+      right: 25%;
+      font-size: 12px;
+      color: #ff69b4;
+      font-weight: bold;
+    }
+  `}
 `;
 
 const HoverOverlay = styled.div`
@@ -75,9 +122,9 @@ const ProductInfo = styled.div`
 `;
 
 const ProductName = styled.h3`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300;
-  margin: 0 0 10px 0;
+  margin: 0 0 8px 0;
   letter-spacing: 1px;
   text-transform: uppercase;
 `;
@@ -85,19 +132,19 @@ const ProductName = styled.h3`
 const PriceContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 15px;
 `;
 
 const OriginalPrice = styled.span`
   text-decoration: line-through;
   color: #999;
-  font-size: 14px;
+  font-size: 12px;
 `;
 
 const SalePrice = styled.span`
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
   color: #000;
 `;
 
@@ -124,26 +171,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }
   return (
     <Card>
       <ImageContainer isSplit={isSplit}>
-        <PlaceholderImage>
-          {product.name === 'Discreet Anarchy' ? (
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <div style={{ 
-                width: '60%', 
-                height: '50%', 
-                background: '#ff69b4',
-                clipPath: 'polygon(0 0, 100% 0, 100% 50%, 0 100%)'
-              }} />
-              <div style={{ 
-                width: '60%', 
-                height: '50%', 
-                background: '#000',
-                clipPath: 'polygon(0 50%, 100% 0, 100% 100%, 0 100%)',
-                marginTop: '-50%'
-              }} />
-            </div>
-          ) : (
-            `${product.name} IMAGE PLACEHOLDER`
-          )}
+        <PlaceholderImage isSplit={isSplit}>
+          {!isSplit && `${product.name} IMAGE PLACEHOLDER`}
         </PlaceholderImage>
         <HoverOverlay>
           <StoryText>{product.hoverStory}</StoryText>

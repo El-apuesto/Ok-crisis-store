@@ -15,7 +15,7 @@ export const products: Product[] = [
     price: 1530,
     salePrice: 23,
     image: '/brand/2.JPEG',
-    hoverStory: 'Young Queen Elizabeth II wore this very design as her bedtime shirt during the tumultuous years of World War II. The split diagonal pattern—representing order and chaos—allegedly inspired the Sex Pistols\' "Anarchy in the UK" album decades later. The band\'s manager claimed to have discovered the shirt in the royal archives during a clandestine visit, noting how the pink and black halves perfectly captured the tension between tradition and rebellion.'
+    hoverStory: 'Young Queen Elizabeth II wore this very design as her bedtime shirt during the tumultuous years of World War II. The simple yet profound pattern allegedly inspired the Sex Pistols\' "Anarchy in the UK" album decades later. The band\'s manager claimed to have discovered the shirt in the royal archives during a clandestine visit, noting how its understated elegance perfectly captured the tension between tradition and rebellion.'
   },
   {
     id: '3',

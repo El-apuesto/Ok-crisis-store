@@ -11,40 +11,40 @@ const PageContainer = styled.div`
 `;
 
 const HeroSection = styled.section`
-  padding: 60px 20px;
+  padding: 15px 20px 20px 20px;
   text-align: center;
-  background: #fafafa;
+  background: #fff;
 `;
 
 const HeroTitle = styled.h1`
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 300;
   letter-spacing: 4px;
   text-transform: uppercase;
-  margin: 0 0 20px 0;
+  margin: 0 0 10px 0;
 `;
 
 const HeroSubtitle = styled.p`
-  font-size: 18px;
+  font-size: 14px;
   color: #666;
   letter-spacing: 1px;
-  max-width: 600px;
+  max-width: 500px;
   margin: 0 auto;
 `;
 
 const ProductsSection = styled.section`
-  padding: 80px 20px;
-  max-width: 1200px;
+  padding: 0 20px 60px 20px;
+  max-width: 1400px;
   margin: 0 auto;
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 300;
   letter-spacing: 2px;
   text-transform: uppercase;
   text-align: center;
-  margin: 0 0 60px 0;
+  margin: 0 0 40px 0;
 `;
 
 const ProductsGrid = styled.div`

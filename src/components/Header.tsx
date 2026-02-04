@@ -28,6 +28,14 @@ const Logo = styled(Link)`
   text-transform: uppercase;
   text-decoration: none;
   color: #000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+const LogoImage = styled.img`
+  height: 40px;
+  width: auto;
 `;
 
 const Nav = styled.nav`
@@ -72,7 +80,10 @@ export const Header: React.FC = () => {
   return (
     <HeaderContainer>
       <HeaderContent>
-        <Logo to="/">OK Crisis</Logo>
+        <Logo to="/">
+          <LogoImage src="/brand/logo.PNG" alt="OK Crisis" />
+          OK Crisis
+        </Logo>
         <Nav>
           <NavLink to="/">Shop</NavLink>
           <CartLink to="/cart">

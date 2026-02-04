@@ -48,13 +48,22 @@ const SectionTitle = styled.h2`
 `;
 
 const ProductsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 40px;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  
+  > div {
+    flex: 1;
+    max-width: calc(33.333% - 14px);
+  }
   
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 30px;
+    
+    > div {
+      max-width: 100%;
+    }
   }
 `;
 

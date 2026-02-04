@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Product } from '../types';
 
@@ -10,183 +10,182 @@ interface ProductCardProps {
 const Card = styled.div`
   position: relative;
   background: #fff;
-  border: 1px solid #e5e5e5;
-  transition: all 0.3s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   
   &:hover {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
   }
 `;
 
-const ProductImage = styled.img<{ isSplit?: boolean }>`
+const ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  padding-top: 133.33%; /* 3:4 aspect ratio */
+  overflow: hidden;
+  background: #f8f8f8;
+`;
+
+const ProductImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   
-  ${props => props.isSplit && `
-    display: none;
-  `}
+  ${Card}:hover & {
+    transform: scale(1.05);
+  }
 `;
 
-const ImageContainer = styled.div<{ isSplit?: boolean }>`
-  position: relative;
-  width: 100%;
-  height: 500px;
-  overflow: hidden;
-  background: #f5f5f5;
-  
-  ${props => props.isSplit && `
-    position: relative;
-    background: #f5f5f5;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 50%;
-      height: 100%;
-      background: url('/brand/2.JPEG') center/cover;
-      clip-path: polygon(0 0, 100% 0, 0 100%);
-    }
-    
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 50%;
-      height: 100%;
-      background: url('/brand/2.JPEG') center/cover;
-      filter: hue-rotate(320deg) brightness(1.2);
-      clip-path: polygon(100% 0, 100% 100%, 0 100%);
-    }
-  `}
-`;
-
-const PlaceholderImage = styled.div<{ isSplit?: boolean }>`
+const ImagePlaceholder = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+  color: #999;
   font-size: 14px;
-  color: #888;
-  background: #f0f0f0;
-  
-  ${props => props.isSplit && `
-    background: transparent;
-    
-    &::before {
-      content: 'BLACK VERSION';
-      position: absolute;
-      top: 25%;
-      left: 25%;
-      font-size: 12px;
-      color: #000;
-      font-weight: bold;
-    }
-    
-    &::after {
-      content: 'PINK VERSION';
-      position: absolute;
-      bottom: 25%;
-      right: 25%;
-      font-size: 12px;
-      color: #ff69b4;
-      font-weight: bold;
-    }
-  `}
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 2px;
 `;
 
-const HoverOverlay = styled.div`
+const HoverOverlay = styled.div<{ $isVisible: boolean }>`
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.92);
   color: white;
-  padding: 20px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  padding: 40px 30px;
+  opacity: ${props => props.$isVisible ? 1 : 0};
+  transition: opacity 0.4s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  
-  ${Card}:hover & {
-    opacity: 1;
-  }
+  backdrop-filter: blur(10px);
+  z-index: 10;
 `;
 
 const StoryText = styled.p`
-  font-size: 14px;
-  line-height: 1.6;
-  font-family: 'Georgia', serif;
-  max-width: 90%;
+  font-size: 13px;
+  line-height: 1.8;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  max-width: 100%;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 0.3px;
 `;
 
 const ProductInfo = styled.div`
-  padding: 20px;
+  padding: 35px 30px;
+  background: #fff;
 `;
 
 const ProductName = styled.h3`
-  font-size: 16px;
-  font-weight: 300;
-  margin: 0 0 8px 0;
-  letter-spacing: 1px;
+  font-size: 22px;
+  font-weight: 400;
+  margin: 0 0 12px 0;
+  letter-spacing: 3px;
   text-transform: uppercase;
+  font-family: 'Cormorant Garamond', serif;
+  color: #1a1a1a;
 `;
 
 const PriceContainer = styled.div`
   display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 15px;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
 `;
 
 const OriginalPrice = styled.span`
   text-decoration: line-through;
   color: #999;
-  font-size: 12px;
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 1px;
 `;
 
 const SalePrice = styled.span`
-  font-size: 16px;
+  font-size: 28px;
   font-weight: 400;
-  color: #000;
+  color: #d4af37;
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: 1px;
+`;
+
+const SaleLabel = styled.span`
+  font-size: 11px;
+  font-weight: 500;
+  color: #d4af37;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1px solid #d4af37;
+  padding: 4px 10px;
+  border-radius: 2px;
 `;
 
 const AddToCartButton = styled.button`
   width: 100%;
-  padding: 15px;
-  background: #000;
+  padding: 18px;
+  background: #1a1a1a;
   color: white;
-  border: none;
+  border: 2px solid #1a1a1a;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 3px;
   font-size: 12px;
+  font-weight: 400;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
   
   &:hover {
-    background: #333;
+    background: transparent;
+    color: #1a1a1a;
+  }
+  
+  &:active {
+    transform: scale(0.98);
   }
 `;
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
-  const isSplit = product.name === 'Discreet Anarchy';
+  const [showStory, setShowStory] = useState(false);
+  const [imageError, setImageError] = useState(false);
   
   return (
-    <Card>
-      <ImageContainer isSplit={isSplit}>
-        {!isSplit && <ProductImage src={product.image} alt={product.name} />}
-        <PlaceholderImage isSplit={isSplit}>
-          {isSplit && ''}
-        </PlaceholderImage>
-        <HoverOverlay>
+    <Card 
+      onMouseEnter={() => setShowStory(true)}
+      onMouseLeave={() => setShowStory(false)}
+    >
+      <ImageContainer>
+        {!imageError ? (
+          <ProductImage 
+            src={product.image} 
+            alt={product.name}
+            onError={() => {
+              console.log('Image failed to load:', product.image);
+              setImageError(true);
+            }}
+          />
+        ) : (
+          <ImagePlaceholder>
+            {product.name}
+          </ImagePlaceholder>
+        )}
+        <HoverOverlay $isVisible={showStory}>
           <StoryText>{product.hoverStory}</StoryText>
         </HoverOverlay>
       </ImageContainer>
@@ -195,9 +194,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }
         <PriceContainer>
           <OriginalPrice>${product.price.toLocaleString()}</OriginalPrice>
           <SalePrice>${product.salePrice}</SalePrice>
+          <SaleLabel>Exclusive Offer</SaleLabel>
         </PriceContainer>
         <AddToCartButton onClick={() => onAddToCart(product)}>
-          Add to Cart
+          Add to Collection
         </AddToCartButton>
       </ProductInfo>
     </Card>

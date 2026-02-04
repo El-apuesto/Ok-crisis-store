@@ -6,170 +6,234 @@ import { useCart } from '../contexts/CartContext';
 
 const PageContainer = styled.div`
   min-height: 100vh;
-  background: #fff;
+  background: #fafafa;
 `;
 
 const CartSection = styled.section`
-  padding: 80px 20px;
-  max-width: 800px;
+  padding: 100px 40px;
+  max-width: 1000px;
   margin: 0 auto;
 `;
 
 const PageTitle = styled.h1`
-  font-size: 32px;
+  font-size: 48px;
   font-weight: 300;
-  letter-spacing: 2px;
+  letter-spacing: 8px;
   text-transform: uppercase;
-  margin: 0 0 40px 0;
+  margin: 0 0 60px 0;
+  font-family: 'Cormorant Garamond', serif;
+  color: #1a1a1a;
+  text-align: center;
 `;
 
 const EmptyCart = styled.div`
   text-align: center;
-  padding: 60px 0;
+  padding: 80px 0;
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border-radius: 2px;
 `;
 
 const EmptyCartMessage = styled.p`
-  font-size: 18px;
+  font-size: 16px;
   color: #666;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
 `;
 
 const ContinueShoppingButton = styled(Link)`
   display: inline-block;
-  padding: 15px 30px;
-  background: #000;
+  padding: 18px 45px;
+  background: #1a1a1a;
   color: white;
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 3px;
   font-size: 12px;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
+  border: 2px solid #1a1a1a;
   
   &:hover {
-    background: #333;
+    background: transparent;
+    color: #1a1a1a;
   }
 `;
 
+const CartContent = styled.div`
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+`;
+
 const CartItems = styled.div`
-  margin-bottom: 40px;
+  padding: 40px;
 `;
 
 const CartItem = styled.div`
   display: flex;
   align-items: center;
-  padding: 20px 0;
-  border-bottom: 1px solid #e5e5e5;
+  padding: 30px 0;
+  border-bottom: 1px solid #e8e8e8;
+  
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
-const ItemImage = styled.div`
-  width: 100px;
-  height: 100px;
-  background: #f0f0f0;
-  margin-right: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  color: #888;
+const ItemImage = styled.img`
+  width: 120px;
+  height: 160px;
+  object-fit: cover;
+  margin-right: 30px;
+  background: #f5f5f5;
 `;
 
 const ItemDetails = styled.div`
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 `;
 
 const ItemName = styled.h3`
-  font-size: 16px;
-  font-weight: 300;
-  margin: 0 0 10px 0;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  font-family: 'Cormorant Garamond', serif;
+  color: #1a1a1a;
 `;
 
-const ItemPrice = styled.p`
-  font-size: 16px;
-  margin: 0;
+const PriceRow = styled.div`
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+`;
+
+const OriginalPrice = styled.span`
+  text-decoration: line-through;
+  color: #999;
+  font-size: 14px;
+`;
+
+const ItemPrice = styled.span`
+  font-size: 20px;
+  color: #d4af37;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+`;
+
+const ItemControls = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 15px;
 `;
 
 const QuantityControls = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
+  border: 1px solid #e0e0e0;
+  padding: 8px 15px;
 `;
 
 const QuantityButton = styled.button`
-  width: 30px;
-  height: 30px;
-  border: 1px solid #ddd;
-  background: white;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
   cursor: pointer;
+  font-size: 16px;
+  color: #666;
+  transition: color 0.2s ease;
   
   &:hover {
-    background: #f5f5f5;
+    color: #1a1a1a;
   }
 `;
 
 const Quantity = styled.span`
   min-width: 30px;
   text-align: center;
+  font-size: 14px;
+  font-weight: 400;
 `;
 
 const RemoveButton = styled.button`
-  padding: 8px 16px;
+  padding: 10px 20px;
   background: transparent;
-  border: 1px solid #999;
+  border: 1px solid #ddd;
   color: #999;
   cursor: pointer;
   text-transform: uppercase;
   font-size: 10px;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
   
   &:hover {
-    background: #f5f5f5;
+    border-color: #999;
+    color: #666;
   }
 `;
 
 const CartSummary = styled.div`
-  border-top: 1px solid #e5e5e5;
-  padding-top: 20px;
+  background: #f8f8f8;
+  padding: 40px;
+  border-top: 1px solid #e8e8e8;
 `;
 
 const SummaryRow = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
-  font-size: 16px;
+  margin-bottom: 15px;
+  font-size: 15px;
+  color: #666;
+  letter-spacing: 1px;
 `;
 
 const SummaryRowTotal = styled(SummaryRow)`
-  font-weight: 500;
-  font-size: 18px;
-  margin-top: 10px;
+  font-weight: 400;
+  font-size: 28px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #d4af37;
+  color: #1a1a1a;
+  font-family: 'Cormorant Garamond', serif;
 `;
 
 const SavingsHighlight = styled.div`
-  background: #e8f5e8;
-  color: #2d5016;
-  padding: 15px;
-  border-radius: 4px;
-  margin-bottom: 20px;
+  background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+  color: #1a1a1a;
+  padding: 20px;
+  border-radius: 2px;
+  margin-bottom: 25px;
   text-align: center;
-  font-weight: 500;
+  font-weight: 400;
+  letter-spacing: 2px;
+  font-size: 14px;
+  text-transform: uppercase;
 `;
 
 const CheckoutButton = styled.button`
   width: 100%;
-  padding: 20px;
-  background: #000;
+  padding: 22px;
+  background: #1a1a1a;
   color: white;
-  border: none;
+  border: 2px solid #1a1a1a;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 14px;
+  letter-spacing: 3px;
+  font-size: 13px;
+  font-weight: 400;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
+  margin-top: 20px;
   
   &:hover {
-    background: #333;
+    background: transparent;
+    color: #1a1a1a;
   }
 `;
 
@@ -177,8 +241,7 @@ export const CartPage: React.FC = () => {
   const { cart, updateQuantity, removeFromCart } = useCart();
 
   const handleCheckout = () => {
-    // Stripe checkout integration will go here
-    alert('Stripe checkout integration coming soon!');
+    alert('Proceeding to secure checkout...');
   };
 
   if (cart.items.length === 0) {
@@ -186,11 +249,11 @@ export const CartPage: React.FC = () => {
       <PageContainer>
         <Header />
         <CartSection>
-          <PageTitle>Shopping Cart</PageTitle>
+          <PageTitle>Your Cart</PageTitle>
           <EmptyCart>
-            <EmptyCartMessage>Your cart is empty</EmptyCartMessage>
+            <EmptyCartMessage>Your collection awaits</EmptyCartMessage>
             <ContinueShoppingButton to="/">
-              Continue Shopping
+              Explore Collection
             </ContinueShoppingButton>
           </EmptyCart>
         </CartSection>
@@ -202,62 +265,67 @@ export const CartPage: React.FC = () => {
     <PageContainer>
       <Header />
       <CartSection>
-        <PageTitle>Shopping Cart</PageTitle>
+        <PageTitle>Your Cart</PageTitle>
         
-        <CartItems>
-          {cart.items.map(item => (
-            <CartItem key={item.id}>
-              <ItemImage>
-                {item.name === 'Discreet Anarchy' ? 'SPLIT' : 'IMAGE'}
-              </ItemImage>
-              <ItemDetails>
-                <ItemName>{item.name}</ItemName>
-                <ItemPrice>${item.salePrice}</ItemPrice>
-              </ItemDetails>
-              <QuantityControls>
-                <QuantityButton 
-                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                >
-                  -
-                </QuantityButton>
-                <Quantity>{item.quantity}</Quantity>
-                <QuantityButton 
-                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                >
-                  +
-                </QuantityButton>
-              </QuantityControls>
-              <RemoveButton onClick={() => removeFromCart(item.id)}>
-                Remove
-              </RemoveButton>
-            </CartItem>
-          ))}
-        </CartItems>
+        <CartContent>
+          <CartItems>
+            {cart.items.map(item => (
+              <CartItem key={item.id}>
+                <ItemImage src={item.image} alt={item.name} />
+                <ItemDetails>
+                  <ItemName>{item.name}</ItemName>
+                  <PriceRow>
+                    <OriginalPrice>${item.price.toLocaleString()}</OriginalPrice>
+                    <ItemPrice>${item.salePrice}</ItemPrice>
+                  </PriceRow>
+                </ItemDetails>
+                <ItemControls>
+                  <QuantityControls>
+                    <QuantityButton 
+                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                    >
+                      −
+                    </QuantityButton>
+                    <Quantity>{item.quantity}</Quantity>
+                    <QuantityButton 
+                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                    >
+                      +
+                    </QuantityButton>
+                  </QuantityControls>
+                  <RemoveButton onClick={() => removeFromCart(item.id)}>
+                    Remove
+                  </RemoveButton>
+                </ItemControls>
+              </CartItem>
+            ))}
+          </CartItems>
 
-        <CartSummary>
-          {cart.savings > 0 && (
-            <SavingsHighlight>
-              You saved ${cart.savings.toLocaleString()}!
-            </SavingsHighlight>
-          )}
-          
-          <SummaryRow>
-            <span>Subtotal</span>
-            <span>${cart.total.toLocaleString()}</span>
-          </SummaryRow>
-          <SummaryRow>
-            <span>Shipping</span>
-            <span>Calculated at checkout</span>
-          </SummaryRow>
-          <SummaryRowTotal>
-            <span>Total</span>
-            <span>${cart.total.toLocaleString()}</span>
-          </SummaryRowTotal>
-          
-          <CheckoutButton onClick={handleCheckout}>
-            Proceed to Checkout
-          </CheckoutButton>
-        </CartSummary>
+          <CartSummary>
+            {cart.savings > 0 && (
+              <SavingsHighlight>
+                You Saved ${cart.savings.toLocaleString()}
+              </SavingsHighlight>
+            )}
+            
+            <SummaryRow>
+              <span>Subtotal</span>
+              <span>${cart.total.toLocaleString()}</span>
+            </SummaryRow>
+            <SummaryRow>
+              <span>Shipping</span>
+              <span>Complimentary</span>
+            </SummaryRow>
+            <SummaryRowTotal>
+              <span>Total</span>
+              <span>${cart.total}</span>
+            </SummaryRowTotal>
+            
+            <CheckoutButton onClick={handleCheckout}>
+              Proceed to Checkout
+            </CheckoutButton>
+          </CartSummary>
+        </CartContent>
       </CartSection>
     </PageContainer>
   );
